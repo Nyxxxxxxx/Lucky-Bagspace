@@ -1,0 +1,492 @@
+.game-over-container {
+  width: 100vw;
+  height: 100vh;
+  background: #FFD298;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 배경 장식 */
+.game-over-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  z-index: 1;
+}
+
+
+/* 텍스트 섹션 */
+.text-section {
+  text-align: center;
+  margin-top: 60px;
+  z-index: 2;
+}
+
+.title-image {
+  max-width: 1019px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 20px -50px;
+  display: block;
+}
+
+
+
+/* BAGSPACE 로고 섹션 */
+.character-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+  min-height: 300px;
+  margin-top: -100px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bagspace-logo {
+  max-width: 437px;
+  max-height: 437px;
+  width: auto;
+  height: auto;
+  animation: bounce 3.5s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* 생일 입력 섹션 */
+.birthday-section {
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+  margin: -60px 0 20px 0;
+}
+
+.birthday-title {
+  font-size: 60px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 30px;
+}
+
+.scroll-picker-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.scroll-picker {
+  flex: 1;
+  min-width: 100px;
+  max-width: 120px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.picker-wheel {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.picker-wheel::-webkit-scrollbar {
+  display: none;
+}
+
+.picker-item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  margin: 2px 4px;
+}
+
+.picker-item:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.picker-item.selected {
+  background: rgba(255, 0, 0, 0.2);
+  color: #333;
+  font-weight: bold;
+  font-size: 18px;
+  transform: scale(1.05);
+}
+
+/* 선택된 아이템 주변 그라데이션 효과 */
+.scroll-picker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scroll-picker::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 운세 확인 버튼 */
+.horoscope-button {
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  background: #666666;
+  color: white;
+  border: 2px solid #555555;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.horoscope-button:hover {
+  background: #777777;
+  border-color: #666666;
+  transform: translateY(-2px);
+}
+
+/* 운세 결과 화면 */
+.horoscope-result {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 210, 152, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  animation: resultFadeIn 0.8s ease-out;
+}
+
+@keyframes resultFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.result-content {
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  animation: resultSlideIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes resultSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.zodiac-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.horoscope-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.result-logo {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.result-logo-image {
+  max-width: 134px;
+  height: auto;
+  animation: resultBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes resultBounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 하단 섹션 */
+.bottom-section {
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+}
+
+
+
+.retry-button {
+  width: 100%;
+  max-width: 300px;
+  height: 50px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.retry-button:hover {
+  background: #555;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.retry-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .game-over-container {
+    padding: 15px;
+  }
+  
+  .title-image {
+    max-width: 892px;
+    margin: 0 auto 20px -30px;
+  }
+  
+  .retry-question {
+    font-size: 24px;
+  }
+  
+  .bagspace-logo {
+    max-width: 94vw;
+    max-height: 94vw;
+  }
+  
+  .prize-text {
+    font-size: 13px;
+  }
+  
+  .retry-button {
+    height: 45px;
+    font-size: 15px;
+  }
+  
+  .birthday-title {
+    font-size: 24px;
+  }
+  
+  .scroll-picker {
+    height: 180px;
+    min-width: 90px;
+    max-width: 110px;
+  }
+  
+  .picker-item {
+    height: 36px;
+    font-size: 15px;
+  }
+  
+  .picker-item.selected {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-over-container {
+    padding: 10px;
+  }
+  
+  .title-image {
+    max-width: 764px;
+    margin: 0 auto 20px -20px;
+  }
+  
+  .retry-question {
+    font-size: 20px;
+  }
+  
+  .bagspace-logo {
+    max-width: 78vw;
+    max-height: 78vw;
+  }
+  
+  .prize-text {
+    font-size: 12px;
+  }
+  
+  .retry-button {
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .birthday-title {
+    font-size: 20px;
+  }
+  
+  .scroll-picker {
+    height: 160px;
+    min-width: 80px;
+    max-width: 100px;
+  }
+  
+  .picker-item {
+    height: 32px;
+    font-size: 14px;
+  }
+  
+  .picker-item.selected {
+    font-size: 16px;
+  }
+  
+  .scroll-picker-container {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .title-image {
+    max-width: 637px;
+    margin: 0 auto 20px -15px;
+  }
+  
+  .retry-question {
+    font-size: 18px;
+  }
+  
+  .bagspace-logo {
+    max-width: 70vw;
+    max-height: 70vw;
+  }
+  
+  .prize-text {
+    font-size: 11px;
+  }
+  
+  .retry-button {
+    height: 35px;
+    font-size: 13px;
+  }
+  
+  .birthday-title {
+    font-size: 18px;
+  }
+  
+  .scroll-picker {
+    height: 140px;
+    min-width: 70px;
+    max-width: 90px;
+  }
+  
+  .picker-item {
+    height: 28px;
+    font-size: 13px;
+  }
+  
+  .picker-item.selected {
+    font-size: 15px;
+  }
+  
+  .scroll-picker-container {
+    gap: 8px;
+  }
+  
+  .horoscope-button {
+    height: 45px;
+    font-size: 15px;
+  }
+  
+  .result-content {
+    max-width: 350px;
+  }
+  
+  .zodiac-title {
+    font-size: 24px;
+  }
+  
+  .horoscope-text {
+    font-size: 15px;
+    padding: 18px;
+  }
+  
+  .result-logo-image {
+    max-width: 112px;
+  }
+}
